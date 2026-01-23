@@ -1,4 +1,26 @@
 :root {
+  font-family: sans-serif;
+  background-color: hsl(200, 10%, 90%);
+
+  --white: hsl(200, 0%, 95%);
+  --gray: hsl(200, 0%, 50%);
+  --black: hsl(200, 0%, 10%);
+  --red: hsl(0, 80%, 50%);
+  --blue: hsl(200, 80%, 50%);
+  --green: hsl(120, 80%, 50%);
+  --yellow: hsl(50, 80%, 50%);
+
+  --brand: hsl(200, 20%, 50%);
+  --border: hsl(200, 0%, 80%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -65,4 +87,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */

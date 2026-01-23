@@ -1,0 +1,33 @@
+.app {
+  color: var(--gray);
+}
+
+.header {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.4rem 0.8rem;
+
+  color: var(--white);
+  background-color: var(--brand);
+
+  .small {
+    font-size: 0.8rem;
+    font-weight: normal;
+    margin-left: 0.4rem;
+  }
+}
+
+.cardWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.category {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--white);
+}
