@@ -7,11 +7,10 @@ export function App() {
       <Header />
       <Category title="テキスト" />
       <div className={styles.cardWrapper}>
-        <Card title="カード1" />
-        <Card title="カード2" />
-        <Card title="カード3" />
-        <Card title="カード4" />
-        <Card title="カード5" />
+        <Card
+          title="ケース変換"
+          description="camelCase、snake_case、PascalCaseなどへの変換"
+        />
       </div>
     </div>
   );
