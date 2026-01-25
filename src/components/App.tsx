@@ -1,7 +1,18 @@
+import { Route, Routes } from "react-router";
 import styles from "./App.module.css";
 import { Card } from "./Card";
+import { CaseConverter } from "./pages/CaseConverter";
 
 export function App() {
+  return (
+    <Routes>
+      <Route index element={<Main />} />
+      <Route path="/case-converter" element={<CaseConverter />} />
+    </Routes>
+  );
+}
+
+function Main() {
   return (
     <div className={styles.app}>
       <Header />
@@ -10,6 +21,7 @@ export function App() {
         <Card
           title="ケース変換"
           description="camelCase、snake_case、PascalCaseなどへの変換"
+          path="/case-converter"
         />
       </div>
     </div>
