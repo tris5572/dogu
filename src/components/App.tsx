@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router";
+import { Outlet, Route, Routes } from "react-router";
 import styles from "./App.module.css";
 import { Card } from "./Card";
 import { CaseConverter } from "./pages/CaseConverter";
@@ -6,16 +6,28 @@ import { CaseConverter } from "./pages/CaseConverter";
 export function App() {
   return (
     <Routes>
-      <Route index element={<Main />} />
-      <Route path="/case-converter" element={<CaseConverter />} />
+      <Route element={<Layout />}>
+        <Route index element={<Main />} />
+        <Route path="/case-converter" element={<CaseConverter />} />
+      </Route>
     </Routes>
+  );
+}
+
+function Layout() {
+  return (
+    <div className={styles.app}>
+      <Header />
+      <div className={styles.contentWrapper}>
+        <Outlet />
+      </div>
+    </div>
   );
 }
 
 function Main() {
   return (
-    <div className={styles.app}>
-      <Header />
+    <>
       <Category title="テキスト" />
       <div className={styles.cardWrapper}>
         <Card
@@ -24,7 +36,7 @@ function Main() {
           path="/case-converter"
         />
       </div>
-    </div>
+    </>
   );
 }
 
