@@ -94,15 +94,18 @@ describe("CaseConverter", () => {
       ]);
     });
 
-    test("オプションを指定すると、連続する大文字を1文字ずつ扱うこと", () => {
-      expect(splitWords("JSONResponseData", { splitAcronyms: true })).toEqual([
-        "J",
-        "S",
-        "O",
-        "N",
-        "Response",
-        "Data",
-      ]);
+    describe("オプション指定", () => {
+      test("splitAcronyms を true にすると、連続する大文字を1文字ずつ扱うこと", () => {
+        expect(splitWords("JSONResponseData", { splitAcronyms: true })).toEqual(
+          ["J", "S", "O", "N", "Response", "Data"],
+        );
+      });
+
+      test("splitAfterNumbers を true にすると、数字の後で分割されること", () => {
+        expect(
+          splitWords("version24update", { splitAfterNumbers: true }),
+        ).toEqual(["version24", "update"]);
+      });
     });
   });
 });
