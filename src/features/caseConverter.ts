@@ -18,9 +18,7 @@ export function splitWords(input: string, options: Options = {}): string[] {
       .split(/[\s_-]+/)
       .flatMap((word) =>
         // camelCase、PascalCaseを分割（連続する大文字を考慮）
-        word
-          .split(/(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])/)
-          .map((w) => w.toLowerCase()),
+        word.split(/(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])/),
       )
       .filter((word) => word.length > 0);
 
@@ -33,7 +31,7 @@ export function splitWords(input: string, options: Options = {}): string[] {
     .split(/[\s_-]+/)
     .flatMap((word) =>
       // camelCase、PascalCaseを分割
-      word.split(/(?=[A-Z])/).map((w) => w.toLowerCase()),
+      word.split(/(?=[A-Z])/),
     )
     .filter((word) => word.length > 0);
 

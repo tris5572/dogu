@@ -4,7 +4,7 @@ import { splitWords } from "./caseConverter";
 describe("CaseConverter", () => {
   describe("splitWords", () => {
     test("camelCase を分割できること", () => {
-      expect(splitWords("camelCase")).toEqual(["camel", "case"]);
+      expect(splitWords("camelCase")).toEqual(["camel", "Case"]);
     });
 
     test("snake_case を分割できること", () => {
@@ -12,7 +12,7 @@ describe("CaseConverter", () => {
     });
 
     test("PascalCase を分割できること", () => {
-      expect(splitWords("PascalCase")).toEqual(["pascal", "case"]);
+      expect(splitWords("PascalCase")).toEqual(["Pascal", "Case"]);
     });
 
     test("kebab-case を分割できること", () => {
@@ -20,7 +20,7 @@ describe("CaseConverter", () => {
     });
 
     test("Train-Case を分割できること", () => {
-      expect(splitWords("Train-Case")).toEqual(["train", "case"]);
+      expect(splitWords("Train-Case")).toEqual(["Train", "Case"]);
     });
 
     test("スペース区切りを分割できること", () => {
@@ -30,15 +30,15 @@ describe("CaseConverter", () => {
     test("複数の区切り文字を含む文字列を分割できること", () => {
       expect(splitWords("thisIs_mixed-case Test")).toEqual([
         "this",
-        "is",
+        "Is",
         "mixed",
         "case",
-        "test",
+        "Test",
       ]);
     });
 
     test("1つの単語の場合は1要素の配列を返すこと", () => {
-      expect(splitWords("Single")).toEqual(["single"]);
+      expect(splitWords("Single")).toEqual(["Single"]);
     });
 
     test("空文字列の場合は空配列を返すこと", () => {
@@ -62,7 +62,7 @@ describe("CaseConverter", () => {
     });
 
     test("数字を含む文字列を分割できること", () => {
-      expect(splitWords("version24Update")).toEqual(["version24", "update"]);
+      expect(splitWords("version24Update")).toEqual(["version24", "Update"]);
     });
 
     test("数字のみでは分割されないこと", () => {
@@ -75,12 +75,12 @@ describe("CaseConverter", () => {
 
     test("デフォルトでは、連続する大文字を1文字ずつ扱うこと", () => {
       expect(splitWords("JSONResponseData")).toEqual([
-        "j",
-        "s",
-        "o",
-        "n",
-        "response",
-        "data",
+        "J",
+        "S",
+        "O",
+        "N",
+        "Response",
+        "Data",
       ]);
     });
 
@@ -89,7 +89,7 @@ describe("CaseConverter", () => {
         splitWords("AResponseJSONData", {
           handleAcronymsAsWords: true,
         }),
-      ).toEqual(["a", "response", "json", "data"]);
+      ).toEqual(["A", "Response", "JSON", "Data"]);
     });
   });
 });
