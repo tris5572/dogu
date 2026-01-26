@@ -65,6 +65,18 @@ describe("CaseConverter", () => {
       expect(splitWords("version24Update")).toEqual(["version24", "Update"]);
     });
 
+    test("数字の直前にアクロニムがある場合に分割できること", () => {
+      expect(splitWords("versionJSON24Update")).toEqual([
+        "version",
+        "JSON24",
+        "Update",
+      ]);
+    });
+
+    test("数字の直後にアクロニムがある場合に分割できること", () => {
+      expect(splitWords("version24JSON")).toEqual(["version24", "JSON"]);
+    });
+
     test("数字のみでは分割されないこと", () => {
       expect(splitWords("version24update")).toEqual(["version24update"]);
     });
@@ -73,8 +85,17 @@ describe("CaseConverter", () => {
       expect(splitWords("special@char#test")).toEqual(["special@char#test"]);
     });
 
-    test("デフォルトでは、連続する大文字を1文字ずつ扱うこと", () => {
-      expect(splitWords("JSONResponseData")).toEqual([
+    test("デフォルトでは、連続する大文字を1単語として扱うこと", () => {
+      expect(splitWords("AResponseJSONData")).toEqual([
+        "A",
+        "Response",
+        "JSON",
+        "Data",
+      ]);
+    });
+
+    test("オプションを指定すると、連続する大文字を1文字ずつ扱うこと", () => {
+      expect(splitWords("JSONResponseData", { splitAcronyms: true })).toEqual([
         "J",
         "S",
         "O",
@@ -82,14 +103,6 @@ describe("CaseConverter", () => {
         "Response",
         "Data",
       ]);
-    });
-
-    test("オプションを指定すると、連続する大文字を1単語として扱うこと", () => {
-      expect(
-        splitWords("AResponseJSONData", {
-          handleAcronymsAsWords: true,
-        }),
-      ).toEqual(["A", "Response", "JSON", "Data"]);
     });
   });
 });
