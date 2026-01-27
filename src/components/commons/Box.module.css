@@ -1,0 +1,11 @@
+.box {
+  border-left: 2px solid var(--brand-light);
+  border-right: 2px solid var(--brand-light);
+  padding: 0.5rem 1rem;
+}
+
+h3 {
+  font-size: 1rem;
+  padding-bottom: 1rem;
+  color: var(--brand);
+}
