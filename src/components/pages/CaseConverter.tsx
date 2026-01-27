@@ -10,9 +10,11 @@ import { convertCase, CaseType } from "../../features/caseConverter";
  */
 export function CaseConverter() {
   const [camelCase, setCamelCase] = useState("");
+  const [pascalCase, setPascalCase] = useState("");
 
   const onChange = useCallback((value: string) => {
     setCamelCase(convertCase(value, { caseType: CaseType.Camel }));
+    setPascalCase(convertCase(value, { caseType: CaseType.Pascal }));
   }, []);
 
   return (
@@ -26,6 +28,7 @@ export function CaseConverter() {
       />
       <ColorArrow />
       <Box title="キャメルケース (camelCase)">{camelCase}</Box>
+      <Box title="パスカルケース (PascalCase)">{pascalCase}</Box>
     </div>
   );
 }
