@@ -1,5 +1,5 @@
 import { expect, test, describe } from "vitest";
-import { splitWords } from "./caseConverter";
+import { mergeWords, splitWords } from "./caseConverter";
 
 describe("CaseConverter", () => {
   describe("splitWords", () => {
@@ -105,6 +105,34 @@ describe("CaseConverter", () => {
         expect(
           splitWords("version24update", { splitAfterNumbers: true }),
         ).toEqual(["version24", "update"]);
+      });
+    });
+  });
+
+  describe("mergeWords", () => {
+    describe("camelCase", () => {
+      test("マージできること", () => {
+        expect(mergeWords(["hello", "world"], { caseType: "camel" })).toBe(
+          "helloWorld",
+        );
+      });
+
+      test("空配列の場合は空文字列を返すこと", () => {
+        expect(mergeWords([], { caseType: "camel" })).toBe("");
+      });
+
+      test("単語が1つの場合でも機能すること", () => {
+        expect(mergeWords(["hello"], { caseType: "camel" })).toBe("hello");
+      });
+
+      test("先頭が大文字で始まる場合、小文字で始まる文字列になること", () => {
+        expect(mergeWords(["Hello"], { caseType: "camel" })).toBe("hello");
+      });
+
+      test("アクロニムを維持すること", () => {
+        expect(
+          mergeWords(["THE", "hello", "THIS", "world"], { caseType: "camel" }),
+        ).toBe("THEHelloTHISWorld");
       });
     });
   });

@@ -1,8 +1,23 @@
-type Options = {
+const CaseTypes = {
+  Camel: "camel",
+  Pascal: "pascal",
+  Snake: "snake",
+  Kebab: "kebab",
+  Train: "train",
+} as const;
+
+export type CaseType = (typeof CaseTypes)[keyof typeof CaseTypes];
+
+type SplitOptions = {
   /** 連続する大文字(アクロニム)をそれぞれの文字で分割するかどうかのフラグ。デフォルトでは false */
   splitAcronyms?: boolean;
   /** 数字の後で分割するかどうかのフラグ。デフォルトでは false */
   splitAfterNumbers?: boolean;
+};
+
+type MergeOptions = {
+  /** 出力するケース名 */
+  caseType: CaseType;
 };
 
 /**
@@ -12,7 +27,10 @@ type Options = {
  * - デフォルトでは、連続する大文字(アクロニム)を1単語として扱う
  * - デフォルトでは、数字の後で分割しない
  */
-export function splitWords(input: string, options: Options = {}): string[] {
+export function splitWords(
+  input: string,
+  options: SplitOptions = {},
+): string[] {
   const { splitAcronyms = false, splitAfterNumbers = false } = options;
 
   let words: string[] = [];
@@ -43,4 +61,35 @@ export function splitWords(input: string, options: Options = {}): string[] {
   }
 
   return words;
+}
+
+/**
+ * 単語のリストをマージする
+ *
+ * リストは splitWords の出力を想定しており、入力された文字列の大文字小文字は維持される前提
+ */
+export function mergeWords(words: string[], options: MergeOptions): string {
+  const { caseType } = options;
+
+  if (caseType === CaseTypes.Camel) {
+    return words
+      .map(
+        (word, i) =>
+          i === 0
+            ? isAcronym(word)
+              ? word // 先頭のアクロニムはそのまま
+              : word.charAt(0).toLowerCase() + word.slice(1) // アクロニム以外なら先頭文字を小文字化
+            : word.charAt(0).toUpperCase() + word.slice(1), // 2単語目以降は先頭文字を大文字化
+      )
+      .join("");
+  }
+
+  return "";
+}
+
+/**
+ * 渡された文字列がアクロニム(すべてが大文字)かどうかを判定する
+ */
+function isAcronym(word: string): boolean {
+  return /^[A-Z]+$/.test(word);
 }
