@@ -1,4 +1,4 @@
-const CaseTypes = {
+export const CaseType = {
   Camel: "camel",
   Pascal: "pascal",
   Snake: "snake",
@@ -6,7 +6,7 @@ const CaseTypes = {
   Train: "train",
 } as const;
 
-export type CaseType = (typeof CaseTypes)[keyof typeof CaseTypes];
+export type CaseType = (typeof CaseType)[keyof typeof CaseType];
 
 type SplitOptions = {
   /** 連続する大文字(アクロニム)をそれぞれの文字で分割するかどうかのフラグ。デフォルトでは false */
@@ -19,6 +19,16 @@ type MergeOptions = {
   /** 出力するケース名 */
   caseType: CaseType;
 };
+
+export type ConvertOptions = SplitOptions & MergeOptions;
+
+/**
+ * 文字列のケースを変換する
+ */
+export function convertCase(input: string, options: ConvertOptions): string {
+  const words = splitWords(input, { splitAcronyms: true });
+  return mergeWords(words, options);
+}
 
 /**
  * 入力文字列を単語ごとに分割した配列を返す
@@ -71,7 +81,7 @@ export function splitWords(
 export function mergeWords(words: string[], options: MergeOptions): string {
   const { caseType } = options;
 
-  if (caseType === CaseTypes.Camel) {
+  if (caseType === CaseType.Camel) {
     return words
       .map(
         (word, i) =>

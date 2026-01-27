@@ -112,26 +112,32 @@ describe("CaseConverter", () => {
   describe("mergeWords", () => {
     describe("camelCase", () => {
       test("マージできること", () => {
-        expect(mergeWords(["hello", "world"], { caseType: "camel" })).toBe(
-          "helloWorld",
-        );
+        expect(
+mergeWords(["hello", "world"], { caseType: CaseType.Camel }),
+        ).toBe("helloWorld");
       });
 
       test("空配列の場合は空文字列を返すこと", () => {
-        expect(mergeWords([], { caseType: "camel" })).toBe("");
+        expect(mergeWords([], { caseType: CaseType.Camel })).toBe("");
       });
 
       test("単語が1つの場合でも機能すること", () => {
-        expect(mergeWords(["hello"], { caseType: "camel" })).toBe("hello");
+        expect(mergeWords(["hello"], { caseType: CaseType.Camel })).toBe(
+"hello",
+);
       });
 
       test("先頭が大文字で始まる場合、小文字で始まる文字列になること", () => {
-        expect(mergeWords(["Hello"], { caseType: "camel" })).toBe("hello");
+        expect(mergeWords(["Hello"], { caseType: CaseType.Camel })).toBe(
+"hello",
+);
       });
 
       test("アクロニムを維持すること", () => {
         expect(
-          mergeWords(["THE", "hello", "THIS", "world"], { caseType: "camel" }),
+          mergeWords(["THE", "hello", "THIS", "world"], {
+caseType: CaseType.Camel,
+}),
         ).toBe("THEHelloTHISWorld");
       });
     });
