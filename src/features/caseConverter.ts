@@ -93,6 +93,13 @@ export function mergeWords(words: string[], options: MergeOptions): string {
       )
       .join("");
   }
+  if (caseType === CaseType.Pascal) {
+    return words
+      .map(
+        (word) => word.charAt(0).toUpperCase() + word.slice(1), // 各単語の先頭文字を大文字化
+      )
+      .join("");
+  }
 
   return "";
 }

@@ -1,5 +1,5 @@
 import { expect, test, describe } from "vitest";
-import { mergeWords, splitWords } from "./caseConverter";
+import { CaseType, mergeWords, splitWords } from "./caseConverter";
 
 describe("CaseConverter", () => {
   describe("splitWords", () => {
@@ -113,7 +113,7 @@ describe("CaseConverter", () => {
     describe("camelCase", () => {
       test("マージできること", () => {
         expect(
-mergeWords(["hello", "world"], { caseType: CaseType.Camel }),
+          mergeWords(["hello", "world"], { caseType: CaseType.Camel }),
         ).toBe("helloWorld");
       });
 
@@ -123,23 +123,49 @@ mergeWords(["hello", "world"], { caseType: CaseType.Camel }),
 
       test("単語が1つの場合でも機能すること", () => {
         expect(mergeWords(["hello"], { caseType: CaseType.Camel })).toBe(
-"hello",
-);
+          "hello",
+        );
       });
 
       test("先頭が大文字で始まる場合、小文字で始まる文字列になること", () => {
         expect(mergeWords(["Hello"], { caseType: CaseType.Camel })).toBe(
-"hello",
-);
+          "hello",
+        );
       });
 
       test("アクロニムを維持すること", () => {
         expect(
           mergeWords(["THE", "hello", "THIS", "world"], {
-caseType: CaseType.Camel,
-}),
+            caseType: CaseType.Camel,
+          }),
         ).toBe("THEHelloTHISWorld");
       });
+    });
+  });
+
+  describe("PascalCase", () => {
+    test("マージできること", () => {
+      expect(
+        mergeWords(["hello", "world"], { caseType: CaseType.Pascal }),
+      ).toBe("HelloWorld");
+    });
+
+    test("空配列の場合は空文字列を返すこと", () => {
+      expect(mergeWords([], { caseType: CaseType.Pascal })).toBe("");
+    });
+
+    test("単語が1つの場合でも機能すること", () => {
+      expect(mergeWords(["hello"], { caseType: CaseType.Pascal })).toBe(
+        "Hello",
+      );
+    });
+
+    test("アクロニムを維持すること", () => {
+      expect(
+        mergeWords(["THE", "hello", "THIS", "world"], {
+          caseType: CaseType.Pascal,
+        }),
+      ).toBe("THEHelloTHISWorld");
     });
   });
 });
