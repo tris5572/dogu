@@ -1,14 +1,18 @@
+import { useCallback, useState } from "react";
 import styles from "./CaseConverter.module.css";
-import { TextInput } from "../commons/TextInput";
-import { useCallback } from "react";
+import { Box } from "../commons/Box";
 import { ColorArrow } from "../commons/DownArrow";
+import { TextInput } from "../commons/TextInput";
+import { convertCase, CaseType } from "../../features/caseConverter";
 
 /**
  * 文字列のケースを変換するページ
  */
 export function CaseConverter() {
+  const [camelCase, setCamelCase] = useState("");
+
   const onChange = useCallback((value: string) => {
-    console.log(value);
+    setCamelCase(convertCase(value, { caseType: CaseType.Camel }));
   }, []);
 
   return (
@@ -21,7 +25,7 @@ export function CaseConverter() {
         onChange={onChange}
       />
       <ColorArrow />
-      <div>出力</div>
+      <Box title="キャメルケース (camelCase)">{camelCase}</Box>
     </div>
   );
 }
