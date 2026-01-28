@@ -2,6 +2,7 @@ export const CaseType = {
   Camel: "camel",
   Pascal: "pascal",
   Snake: "snake",
+  UpperSnake: "upperSnake",
   Kebab: "kebab",
   Train: "train",
 } as const;
@@ -99,6 +100,14 @@ export function mergeWords(words: string[], options: MergeOptions): string {
         (word) => word.charAt(0).toUpperCase() + word.slice(1), // 各単語の先頭文字を大文字化
       )
       .join("");
+  }
+  if (caseType === CaseType.Snake) {
+    return words
+      .map(
+        (word) =>
+          isAcronym(word) ? word : word.charAt(0).toLowerCase() + word.slice(1), // アクロニム以外は小文字化
+      )
+      .join("_");
   }
 
   return "";

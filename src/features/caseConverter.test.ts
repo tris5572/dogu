@@ -168,4 +168,28 @@ describe("CaseConverter", () => {
       ).toBe("THEHelloTHISWorld");
     });
   });
+
+  describe("snake_case", () => {
+    test("マージできること", () => {
+      expect(mergeWords(["hello", "world"], { caseType: CaseType.Snake })).toBe(
+        "hello_world",
+      );
+    });
+
+    test("空配列の場合は空文字列を返すこと", () => {
+      expect(mergeWords([], { caseType: CaseType.Snake })).toBe("");
+    });
+
+    test("単語が1つの場合でも機能すること", () => {
+      expect(mergeWords(["hello"], { caseType: CaseType.Snake })).toBe("hello");
+    });
+
+    test("アクロニムを維持すること", () => {
+      expect(
+        mergeWords(["THE", "hello", "THIS", "world"], {
+          caseType: CaseType.Snake,
+        }),
+      ).toBe("THE_hello_THIS_world");
+    });
+  });
 });
