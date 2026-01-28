@@ -4,6 +4,7 @@ import { Box } from "../commons/Box";
 import { ColorArrow } from "../commons/DownArrow";
 import { TextInput } from "../commons/TextInput";
 import { convertCase, CaseType } from "../../features/caseConverter";
+import { ResultText } from "../commons/ResultText";
 
 /**
  * 文字列のケースを変換するページ
@@ -27,8 +28,14 @@ export function CaseConverter() {
         onChange={onChange}
       />
       <ColorArrow />
-      <Box title="キャメルケース (camelCase)">{camelCase}</Box>
-      <Box title="パスカルケース (PascalCase)">{pascalCase}</Box>
+      <div className={styles.resultContainer}>
+        <Box title="キャメルケース (camelCase)">
+          <ResultText text={camelCase} />
+        </Box>
+        <Box title="パスカルケース (PascalCase)">
+          <ResultText text={pascalCase} />
+        </Box>
+      </div>
     </div>
   );
 }
