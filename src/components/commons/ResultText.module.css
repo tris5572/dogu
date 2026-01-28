@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.text {
+  font-family: monospace;
+  font-size: 1.25rem;
+  width: 20rem;
+  border-bottom: 1px solid var(--brand-x-light);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
