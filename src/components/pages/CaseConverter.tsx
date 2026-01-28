@@ -12,10 +12,12 @@ import { ResultText } from "../commons/ResultText";
 export function CaseConverter() {
   const [camelCase, setCamelCase] = useState("");
   const [pascalCase, setPascalCase] = useState("");
+  const [snakeCase, setSnakeCase] = useState("");
 
   const onChange = useCallback((value: string) => {
     setCamelCase(convertCase(value, { caseType: CaseType.Camel }));
     setPascalCase(convertCase(value, { caseType: CaseType.Pascal }));
+    setSnakeCase(convertCase(value, { caseType: CaseType.Snake }));
   }, []);
 
   return (
@@ -34,6 +36,9 @@ export function CaseConverter() {
         </Box>
         <Box title="パスカルケース (PascalCase)">
           <ResultText text={pascalCase} />
+        </Box>
+        <Box title="スネークケース (snake_case)">
+          <ResultText text={snakeCase} />
         </Box>
       </div>
     </div>
