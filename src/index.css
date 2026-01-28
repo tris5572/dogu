@@ -11,9 +11,13 @@
   --green: hsl(120 80% 50%);
   --yellow: hsl(50 80% 50%);
 
-  --brand: hsl(200 20% 50%);
+  --brand-xx-light: hsl(200 20% 90%);
+  --brand-x-light: hsl(200 20% 80%);
   --brand-light: hsl(200 20% 70%);
+  --brand: hsl(200 20% 50%);
   --brand-dark: hsl(200 20% 30%);
+  --brand-x-dark: hsl(200 20% 20%);
+  --brand-xx-dark: hsl(200 20% 10%);
 
   --border: hsl(200 0% 80%);
 }
