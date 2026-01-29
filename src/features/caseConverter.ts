@@ -115,7 +115,12 @@ export function mergeWords(words: string[], options: MergeOptions): string {
 
 /**
  * 渡された文字列がアクロニム(すべてが大文字)かどうかを判定する
+ *
+ * ただし1文字の場合はアクロニムとみなさない
  */
-function isAcronym(word: string): boolean {
+export function isAcronym(word: string): boolean {
+  if (word.length <= 1) {
+    return false;
+  }
   return /^[A-Z]+$/.test(word);
 }
