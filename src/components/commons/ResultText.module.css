@@ -9,6 +9,10 @@
   font-size: 1.25rem;
   width: 20rem;
   border-bottom: 1px solid var(--brand-x-light);
+  /* テキストの有無で結果表示部の高さが変わらないようにする。絵文字の上端が切れないように高さを確保 */
+  height: 1.4rem;
+  line-height: 1.4rem;
+
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
