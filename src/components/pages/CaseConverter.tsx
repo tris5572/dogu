@@ -3,7 +3,7 @@ import styles from "./CaseConverter.module.css";
 import { Box } from "../commons/Box";
 import { ColorArrow } from "../commons/DownArrow";
 import { TextInput } from "../commons/TextInput";
-import { convertCase, CaseType } from "../../features/caseConverter";
+import { convertCase, CaseType } from "../../features/convertCase";
 import { ResultText } from "../commons/ResultText";
 
 /**

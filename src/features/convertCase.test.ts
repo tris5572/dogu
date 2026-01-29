@@ -1,7 +1,7 @@
 import { expect, test, describe } from "vitest";
-import { CaseType, mergeWords, splitWords } from "./caseConverter";
+import { CaseType, mergeWords, splitWords } from "./convertCase";
 
-describe("CaseConverter", () => {
+describe("convertCase", () => {
   describe("splitWords", () => {
     test("camelCase を分割できること", () => {
       expect(splitWords("camelCase")).toEqual(["camel", "Case"]);
