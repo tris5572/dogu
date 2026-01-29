@@ -27,7 +27,7 @@ export type ConvertOptions = SplitOptions & MergeOptions;
  * 文字列のケースを変換する
  */
 export function convertCase(input: string, options: ConvertOptions): string {
-  const words = splitWords(input, { splitAcronyms: true });
+  const words = splitWords(input);
   return mergeWords(words, options);
 }
 
