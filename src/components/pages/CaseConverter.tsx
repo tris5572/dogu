@@ -13,11 +13,13 @@ export function CaseConverter() {
   const [camelCase, setCamelCase] = useState("");
   const [pascalCase, setPascalCase] = useState("");
   const [snakeCase, setSnakeCase] = useState("");
+  const [upperSnakeCase, setUpperSnakeCase] = useState("");
 
   const onChange = useCallback((value: string) => {
     setCamelCase(convertCase(value, { caseType: CaseType.Camel }));
     setPascalCase(convertCase(value, { caseType: CaseType.Pascal }));
     setSnakeCase(convertCase(value, { caseType: CaseType.Snake }));
+    setUpperSnakeCase(convertCase(value, { caseType: CaseType.UpperSnake }));
   }, []);
 
   return (
@@ -39,6 +41,9 @@ export function CaseConverter() {
         </Box>
         <Box title="スネークケース (snake_case)">
           <ResultText text={snakeCase} />
+        </Box>
+        <Box title="アッパースネークケース (UPPER_SNAKE_CASE)">
+          <ResultText text={upperSnakeCase} />
         </Box>
       </div>
     </div>
