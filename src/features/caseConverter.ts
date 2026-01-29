@@ -109,6 +109,11 @@ export function mergeWords(words: string[], options: MergeOptions): string {
       )
       .join("_");
   }
+  if (caseType === CaseType.UpperSnake) {
+    return words
+      .map((word) => word.toUpperCase()) // 全て大文字化
+      .join("_");
+  }
 
   return "";
 }

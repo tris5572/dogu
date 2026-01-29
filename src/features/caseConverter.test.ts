@@ -192,4 +192,30 @@ describe("CaseConverter", () => {
       ).toBe("THE_hello_THIS_world");
     });
   });
+
+  describe("UPPER_SNAKE_CASE", () => {
+    test("マージできること", () => {
+      expect(
+        mergeWords(["hello", "world"], { caseType: CaseType.UpperSnake }),
+      ).toBe("HELLO_WORLD");
+    });
+
+    test("空配列の場合は空文字列を返すこと", () => {
+      expect(mergeWords([], { caseType: CaseType.UpperSnake })).toBe("");
+    });
+
+    test("単語が1つの場合でも機能すること", () => {
+      expect(mergeWords(["hello"], { caseType: CaseType.UpperSnake })).toBe(
+        "HELLO",
+      );
+    });
+
+    test("アクロニムを維持すること", () => {
+      expect(
+        mergeWords(["THE", "hello", "THIS", "world"], {
+          caseType: CaseType.UpperSnake,
+        }),
+      ).toBe("THE_HELLO_THIS_WORLD");
+    });
+  });
 });
