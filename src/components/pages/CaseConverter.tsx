@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useMemo } from "react";
 import styles from "./CaseConverter.module.css";
 import { Box } from "../commons/Box";
 import { ColorArrow } from "../commons/DownArrow";
@@ -10,17 +10,20 @@ import { ResultText } from "../commons/ResultText";
  * 文字列のケースを変換するページ
  */
 export function CaseConverter() {
-  const [camelCase, setCamelCase] = useState("");
-  const [pascalCase, setPascalCase] = useState("");
-  const [snakeCase, setSnakeCase] = useState("");
-  const [upperSnakeCase, setUpperSnakeCase] = useState("");
+  const [inputText, setInputText] = useState("");
 
-  const onChange = useCallback((value: string) => {
-    setCamelCase(convertCase(value, { caseType: CaseType.Camel }));
-    setPascalCase(convertCase(value, { caseType: CaseType.Pascal }));
-    setSnakeCase(convertCase(value, { caseType: CaseType.Snake }));
-    setUpperSnakeCase(convertCase(value, { caseType: CaseType.UpperSnake }));
+  const onTextChange = useCallback((value: string) => {
+    setInputText(value);
   }, []);
+
+  const results = useMemo(() => {
+    return {
+      camel: convertCase(inputText, { caseType: CaseType.Camel }),
+      pascal: convertCase(inputText, { caseType: CaseType.Pascal }),
+      snake: convertCase(inputText, { caseType: CaseType.Snake }),
+      upperSnake: convertCase(inputText, { caseType: CaseType.UpperSnake }),
+    };
+  }, [inputText]);
 
   return (
     <div className={styles.wrapper}>
@@ -29,21 +32,21 @@ export function CaseConverter() {
         size={60}
         font="monospace"
         placeholder="文字列を入力"
-        onChange={onChange}
+        onChange={onTextChange}
       />
       <ColorArrow />
       <div className={styles.resultContainer}>
         <Box title="キャメルケース (camelCase)">
-          <ResultText text={camelCase} />
+          <ResultText text={results.camel} />
         </Box>
         <Box title="パスカルケース (PascalCase)">
-          <ResultText text={pascalCase} />
+          <ResultText text={results.pascal} />
         </Box>
         <Box title="スネークケース (snake_case)">
-          <ResultText text={snakeCase} />
+          <ResultText text={results.snake} />
         </Box>
         <Box title="アッパースネークケース (UPPER_SNAKE_CASE)">
-          <ResultText text={upperSnakeCase} />
+          <ResultText text={results.upperSnake} />
         </Box>
       </div>
     </div>
