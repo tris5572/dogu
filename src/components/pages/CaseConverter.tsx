@@ -59,16 +59,16 @@ export function CaseConverter() {
       </div>
       <ColorArrow />
       <div className={styles.resultContainer}>
-        <Box title="キャメルケース (camelCase)">
+        <Box title="キャメルケース" subtitle="(camelCase)">
           <ResultText text={results.camel} />
         </Box>
-        <Box title="パスカルケース (PascalCase)">
+        <Box title="パスカルケース" subtitle="(PascalCase)">
           <ResultText text={results.pascal} />
         </Box>
-        <Box title="スネークケース (snake_case)">
+        <Box title="スネークケース" subtitle="(snake_case)">
           <ResultText text={results.snake} />
         </Box>
-        <Box title="アッパースネークケース (UPPER_SNAKE_CASE)">
+        <Box title="アッパースネークケース" subtitle="(UPPER_SNAKE_CASE)">
           <ResultText text={results.upperSnake} />
         </Box>
       </div>
